@@ -24,9 +24,9 @@ public class HistoryDaoImpl extends AbstractDao<History> implements HistoryDao{
 	}
 
 	@Override
-	public History findByUserIdAndVideoId(Integer userid, Integer videoid) {
-		String sql = "SELECT o FROM History o WHERE o.user.userid = ?0 AND o.video.videoid = ?1"
+	public History findByUserIdAndVideoId(Integer userId, Integer videoId) {
+		String sql = "SELECT o FROM History o WHERE o.user.id = ?0 AND o.video.id = ?1"
 				+ " AND o.video.isActive = 1";
-		return super.findOne(History.class, sql, userid, videoid);
+		return super.findOne(History.class, sql, userId, videoId);
 	}
 }

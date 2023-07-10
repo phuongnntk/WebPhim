@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class JpaUtil {
 	private static EntityManagerFactory factory;
-	static public EntityManager getEntityManager() {
+	public static EntityManager getEntityManager() {
 		if(factory == null || !factory.isOpen()) {
 			factory = Persistence.createEntityManagerFactory("CGVmovie");
 		}

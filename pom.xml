@@ -22,11 +22,11 @@
 			</plugin>
 		</plugins>
 	</build>
-	<!-- Config từ java 17 -> java 8
-  <properties>
-	  <maven.compiler.target>1.8</maven.compiler.target>
-	  <maven.compiler.source>1.8</maven.compiler.source>
-  </properties> -->
+	<!-- Config từ java 17 -> java 8  -->
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
 	<dependencies>
 		<!--javax.servlet-api -->
 		<dependency>
@@ -58,7 +58,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.5.7.Final</version>
+			<version>5.4.31.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.persistence</groupId>
@@ -106,7 +106,13 @@
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
-			<version>11.2.1.jre17</version>
+			<version>8.2.2.jre8</version>
+		</dependency>
+		<!-- taglibs-->
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
 		</dependency>
 
 	</dependencies>

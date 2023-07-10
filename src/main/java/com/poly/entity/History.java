@@ -25,12 +25,12 @@ public class History {
 	private Integer id; 
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "userid" , referencedColumnName = "id")
+	@JoinColumn(name = "userId" , referencedColumnName = "id")
 	@JsonIgnoreProperties(value = {"applications","hibernateLazyInitializer"})
 	private User user;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "videoid" , referencedColumnName = "id")
+	@JoinColumn(name = "videoId" , referencedColumnName = "id")
 	private Video video;
 	
 	@Column(name = "viewedDate")
@@ -42,41 +42,52 @@ public class History {
 	
 	@Column(name = "likedDate")
 	private Timestamp likedDate;
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public Video getVideo() {
 		return video;
 	}
+
 	public void setVideo(Video video) {
 		this.video = video;
 	}
+
 	public Timestamp getViewedDate() {
 		return viewedDate;
 	}
+
 	public void setViewedDate(Timestamp viewedDate) {
 		this.viewedDate = viewedDate;
 	}
+
 	public Boolean getIsLiked() {
 		return isLiked;
 	}
+
 	public void setIsLiked(Boolean isLiked) {
 		this.isLiked = isLiked;
 	}
+
 	public Timestamp getLikedDate() {
 		return likedDate;
 	}
+
 	public void setLikedDate(Timestamp likedDate) {
 		this.likedDate = likedDate;
-	}
+	}	
 }
