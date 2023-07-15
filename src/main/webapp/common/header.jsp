@@ -12,8 +12,7 @@
 	<div class="container-fluid">
 		<a class="navbar-brand" href="<c:url value ='/index'/>"><img
 			src="<c:url value='templates/user/img/logo.jpg'/>"
-			style="width: 100px;"> CGV - Movie
-		</a>
+			style="width: 100px;"> CGV - Movie </a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -24,8 +23,11 @@
 			<ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 				<c:choose>
 					<c:when test="${ not empty sessionScope.currentUser}">
-						<li class="nav-item"><a class="nav-link nav-link-1 active"
-							aria-current="page" href="">Welcome, ${sessionScope.currentUser.username}</a></li>
+						<li class="nav-item">
+							<a class="nav-link nav-link-1 active" aria-current="page"
+								data-toggle="modal" data-target="#changePassModal">Welcome,
+								${sessionScope.currentUser.username}</a>
+						</li>
 						<li class="nav-item"><a class="nav-link nav-link-4"
 							href="favorites">My favorites</a></li>
 						<li class="nav-item"><a class="nav-link nav-link-4"
@@ -57,4 +59,33 @@
 			<i class="fas fa-search"></i>
 		</button>
 	</form>
+</div>
+
+<div class="modal fade" id="changePassModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			<div class="form-group">
+						<input type="password" name="currentPass" id="currentPass"
+							class="form-control rounded-0" placeholder="Current Password" required />
+					</div>
+			<div class="form-group">
+						<input type="password" name="newPass" id="newPass"
+							class="form-control rounded-0" placeholder="New Password" required />
+					</div>
+					<h5 style="color: red" id="messageChangePass"></h5>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-warning"
+					data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" id="changePassBtn">Save changes</button>
+			</div>
+		</div>
+	</div>
 </div>

@@ -29,6 +29,7 @@ import com.poly.service.impl.VideoServiceIpml;
 public class HomeController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private static final int VIDEO_MAX_PAGE_SIZE = 8;
 	private VideoService videoService = new VideoServiceIpml();
 	private HistoryService historyService = new HistoryServiceImpl();
 
@@ -50,10 +51,23 @@ public class HomeController extends HttpServlet {
 	}
 
 	private void doGetIndex(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		List<Video> videos = videoService.findAll();
+		List<Video> countVideo = videoService.findAll();
+		int maxPage = (int) Math.ceil(countVideo.size() / (double) VIDEO_MAX_PAGE_SIZE);
+		request.setAttribute("maxPage", maxPage);
+		
+		List<Video> videos;
+		String pageNumber = request.getParameter("page");
+	
+		if(pageNumber == null || Integer.valueOf(pageNumber) > maxPage) {
+			videos = videoService.findAll(1, VIDEO_MAX_PAGE_SIZE);
+			request.setAttribute("currentPage", 1);
+		}else {
+			videos = videoService.findAll(Integer.valueOf(pageNumber), VIDEO_MAX_PAGE_SIZE);
+			request.setAttribute("currentPage", pageNumber);
+		}
+		
 		request.setAttribute("videos", videos);
 		request.getRequestDispatcher("/views/user/index.jsp").forward(request, response);
-
 	}
 
 	private void doGetFavorites(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

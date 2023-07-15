@@ -37,7 +37,7 @@ public class AbstractDao<T> {
 	public List<T> findAll(Class<T> clazz, boolean existIsActive, int pageNumber, int pageSize) {
 		String entityName = clazz.getSimpleName();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT o FROM").append(entityName).append(" o");
+		sql.append("SELECT o FROM ").append(entityName).append(" o");
 		if (existIsActive == true) {
 			sql.append(" WHERE isActive = 1");
 		}

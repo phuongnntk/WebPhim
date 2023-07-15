@@ -12,7 +12,7 @@ public interface UserService {
 	User resetPassword(String email);	
 	List<User> findAll();
 	List<User> findAll(int pageNumber, int pageSize);
-	User create(String username, String password, String email);
+	User register(String username, String password, String email);
 	User update(User entity);
 	User delete(String username);
 }

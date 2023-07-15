@@ -29,7 +29,7 @@
 				<h5 class="tm-text-primary" style="white-space: nowrap; overflow: hidden;">
 				${video.title}</h5>
 					<figure class="effect-ming tm-video-item">
-						<img src="<c:url value='templates/user/img/slide.jpg'/>"
+						<img src="${video.poster}"
 							alt="Image" class="img-fluid">
 						<figcaption
 							class="d-flex align-items-center justify-content-center">
@@ -47,16 +47,23 @@
 		<div class="row tm-mb-90">
 			<div
 				class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
-				<a href="javascript:void(0);"
-					class="btn btn-primary tm-btn-prev mb-2 disabled">Previous</a>
+				<c:if test="${currentPage == 1}">
+				<a href="javascript:void(0);" class="btn btn-primary tm-btn-prev mb-2 disabled">Previous</a>
+				</c:if>
+				<c:if test="${currentPage > 1}">
+				<a href="index?page=${currentPage - 1}" class="btn btn-primary tm-btn-prev mb-2">Previous</a>
+				</c:if>
 				<div class="tm-paging d-flex">
-					<a href="javascript:void(0);" class="active tm-paging-link">1</a> <a
-						href="javascript:void(0);" class="tm-paging-link">2</a> <a
-						href="javascript:void(0);" class="tm-paging-link">3</a> <a
-						href="javascript:void(0);" class="tm-paging-link">4</a>
+				<c:forEach varStatus="i" begin="1" end="${maxPage}">
+				<a href="index?page=${i.index}" class="tm-paging-link ${currentPage == i.index ? 'active' : ''}">${i.index}</a>
+				</c:forEach>
 				</div>
-				<a href="javascript:void(0);" class="btn btn-primary tm-btn-next">Next
-					Page</a>
+				<c:if test="${currentPage == maxPage}">
+				<a href="javascript:void(0);" class="btn btn-primary tm-btn-prev mb-2 disabled">Next Page</a>
+				</c:if>
+				<c:if test="${currentPage < maxPage}">
+				<a href="index?page=${currentPage + 1}" class="btn btn-primary tm-btn-prev mb-2">Next Page</a>
+				</c:if>
 			</div>
 		</div>
 	</div>

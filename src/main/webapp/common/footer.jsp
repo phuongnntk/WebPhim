@@ -37,10 +37,30 @@
             </div>
         </div>
     </footer>
-    
     <script src="<c:url value='/templates/user/js/plugins.js'/>"></script>
     <script>
         $(window).on("load", function() {
             $('body').addClass('loaded');
         });
     </script>
+    
+    <script>
+	$('#changePassBtn').click(function(){
+		 $('#messageChangePass').text('');
+	var currentPass = $('#currentPass').val();
+	var newPass = $('#newPass').val();
+	var formData = {
+			'currentPass' : currentPass,
+			'newPass' : newPass
+	};
+	$.ajax({
+		url : 'changePass',
+		type: 'POST',
+		data: formData
+		}).then(function(data){
+			$('#messageChangePass').text('Password has been changed !!');
+		}).fail(function(error){
+			$('#messageChangePass').text('Your information not correct, please check again');
+		});
+	});
+	</script>
