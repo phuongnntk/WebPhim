@@ -1,9 +1,11 @@
 package com.poly.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 
 import com.poly.util.JpaUtil;
@@ -68,8 +70,8 @@ public class AbstractDao<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Object[]> findManyByNativeQuery(Class<T> clazz, String sql, Object... params) {
-		Query query = entityManager.createNativeQuery(sql, clazz);
+	public List<Object[]> findManyByNativeQuery(String sql, Object... params) {
+		Query query = entityManager.createNativeQuery(sql);
 		for (int i = 0; i < params.length; i++) {
 			query.setParameter(i, params[i]);
 		}
@@ -116,5 +118,12 @@ public class AbstractDao<T> {
 			System.out.println("Cannot delete entity" + entity.getClass().getSimpleName());
 			throw new RuntimeException(e);
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> callStored(String namedStored, Map<String, Object> params){
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery(namedStored);
+		params.forEach((key, value) -> query.setParameter(key, value));
+		return (List<T>) query.getResultList();
 	}
 }

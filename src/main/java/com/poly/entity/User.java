@@ -5,8 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.ser.impl.UnknownSerializer;
+import com.poly.constant.NamedStored;
+
+@NamedStoredProcedureQueries({
+	@NamedStoredProcedureQuery(name = NamedStored.FIND_USERS_LIKED_VIDEO_BY_HREF, 
+			procedureName = "sp_selectUsersLikedVideoByVideoHref",
+			resultClasses = {User.class},
+			parameters = @StoredProcedureParameter(name = "videoHref", type = String.class))
+})
 @Entity
 @Table(name = "`user`")
 public class User {

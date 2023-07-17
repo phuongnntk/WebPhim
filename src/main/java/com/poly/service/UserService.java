@@ -2,6 +2,7 @@ package com.poly.service;
 
 import java.util.List;
 
+import com.poly.dto.UserDto;
 import com.poly.entity.User;
 
 public interface UserService {
@@ -15,4 +16,5 @@ public interface UserService {
 	User register(String username, String password, String email);
 	User update(User entity);
 	User delete(String username);
+	List<UserDto> findUsersLikedVideoByVideoHref(String href);
 }
